@@ -1,11 +1,12 @@
-# To Run the DEMO APP override the following properties (Contact your Redfast Customer Success Manager for details):
+# Redfast Android SDK
+See [Releases](https://github.com/redfast/redfast-sdk-android/releases) for the latest version
 
-- 1. `APP_ID` at `com.redfast.mpass.MainActivityKt.APP_ID`
-- 2. `bearerToken` at `com.redfast.mpass.api.RedflixApi.bearerToken`
-- 3. `API_KEY` at `com.redfast.mpass.api.TmdbKt.API_KEY`
-- 4. `RF_APP` at `com.redfast.mpass.api.TokenApliKt.RF_APP`
-- 5. `DEFAULT_USER_ID` at `com.redfast.mpass.base.DefaultSharedPrefsKt.DEFAULT_USER_ID`
-
-## For Amazon build also add `api_key.txt` file under `app/src/amazon/assets/api_key.txt` with your amazon api key.
-
-## For Google build also add `google-services.json` file under `app` with your google api key.
+# Redfast Demo App
+The demo app illustrates a reference implementation of the Redfast SDK. Before you run the demo app, make sure to update the following (your Customer Success Manager can provide details).
+- `APP_ID` at `com.redfast.mpass.MainActivityKt.APP_ID`
+- `bearerToken` at `com.redfast.mpass.api.RedflixApi.bearerToken`
+- `API_KEY` at `com.redfast.mpass.api.TmdbKt.API_KEY`
+- `RF_APP` at `com.redfast.mpass.api.TokenApliKt.RF_APP`
+- `DEFAULT_USER_ID` at `com.redfast.mpass.base.DefaultSharedPrefsKt.DEFAULT_USER_ID`
+- For Amazon build also add `api_key.txt` file under `app/src/amazon/assets/api_key.txt` with the amazon api key
+- For Google build also add `google-services.json` file under `app` with the google api key
