@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.redfast.mpass.MainActivity
+import com.redfast.mpass.base.DefaultSharedPrefs
+import com.redfast.mpass.base.userId
 import com.redfast.mpass.databinding.FragmentProfileBinding
 import com.redfast.promotion.PathType
 import com.redfast.promotion.PromotionManager
@@ -38,9 +40,9 @@ class ProfileFragment : Fragment() {
         binding.planHistory.setOnClickListener { makeToast("Your request was sent") }
         binding.changeProfile.setOnClickListener { makeToast("Your profile will be changed soon") }
         binding.settings.setOnClickListener {
-//            PromotionManager.showDebugView(DefaultSharedPrefs.userId) { newUserId ->
-//                DefaultSharedPrefs.userId = newUserId
-//            }
+            PromotionManager.showDebugView(DefaultSharedPrefs.userId) { newUserId ->
+                DefaultSharedPrefs.userId = newUserId
+            }
         }
     }
 

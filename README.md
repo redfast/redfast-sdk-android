@@ -7,3 +7,4 @@
 - 5. `DEFAULT_USER_ID` at `com.redfast.mpass.base.DefaultSharedPrefsKt.DEFAULT_USER_ID`
 
 ## For Amazon build also add `api_key.txt` file under `app/src/amazon/assets/api_key.txt` with your amazon api key.
+## For Google build also add `google-services.json` file under `app` with your google api key.
