@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/hero_unit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/splash"
+            android:layout_width="120dp"
+            android:layout_height="97dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mlt_logo_w"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/splashText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Torch calories with high-intensity cardio and resistance training,"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/splash"
+            app:layout_constraintTop_toBottomOf="@+id/splash" />
+
+        <Button
+            android:id="@+id/splashButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play Video"
+            android:textColor="#ffffff"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/splashText"
+            app:layout_constraintTop_toBottomOf="@+id/splashText"
+            app:backgroundTint="#ff0000"
+            app:cornerRadius="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
