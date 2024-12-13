@@ -1,4 +1,9 @@
-# Redfast Android SDK
+# Redfast Android SDK (mobile/tablet/TV)
+
+# Redfast Apple SDK (ios/tvos)
+
+Please refer to the Android help [page](https://help.redfast.com/docs/android-sdk) for SDK installation instructions.
+
 See [Releases](https://github.com/redfast/redfast-sdk-android/releases) for the latest version
 
 # Redfast Demo App
