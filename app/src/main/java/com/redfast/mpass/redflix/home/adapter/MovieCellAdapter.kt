@@ -3,12 +3,12 @@ package com.redfast.mpass.redflix.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.redfast.mpass.api.MovieItem
+import com.redfast.mpass.api.MovieItemData
 import com.redfast.mpass.databinding.MovieCellBinding
 import com.redfast.mpass.redflix.home.adapter.holders.MovieCellHolder
 
 class MovieCellAdapter(
-    var collections: List<MovieItem>,
+    var collections: List<MovieItemData>,
     val orientation: String,
     val width: Int,
     val height: Int
@@ -25,7 +25,7 @@ class MovieCellAdapter(
 
     override fun onBindViewHolder(holder: MovieCellHolder, position: Int) {
         collections[position].let {
-            holder.bindRow(it)
+            holder.bindRow(it.items)
         }
     }
 }

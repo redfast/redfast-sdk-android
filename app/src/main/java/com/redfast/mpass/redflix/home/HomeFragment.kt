@@ -13,6 +13,7 @@ import com.redfast.mpass.MainActivity
 import com.redfast.mpass.R
 import com.redfast.mpass.api.MovieItem
 import com.redfast.mpass.api.MovieItemCollection
+import com.redfast.mpass.api.MovieItemData
 import com.redfast.mpass.api.Thumbnail
 import com.redfast.mpass.databinding.FragmentHomeBinding
 import com.redfast.mpass.redflix.home.adapter.RowAdapter
@@ -24,14 +25,16 @@ class HomeFragment : Fragment() {
     private fun makeBanner(url: String, height: Int, local: Boolean) =
         MovieItemCollection(
             "banner", "", 0, height, listOf(
-                MovieItem(
-                    "",
-                    "",
-                    "",
-                    "",
-                    Thumbnail(url),
-                    null,
-                    local
+                MovieItemData(
+                    MovieItem(
+                        "",
+                        "",
+                        "",
+                        "",
+                        Thumbnail(url),
+                        null,
+                        local
+                    )
                 )
             )
         )

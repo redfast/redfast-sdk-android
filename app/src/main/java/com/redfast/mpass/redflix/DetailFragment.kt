@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.redfast.mpass.R
 import com.redfast.mpass.api.MovieItem
 import com.redfast.mpass.api.MovieItemCollection
+import com.redfast.mpass.api.MovieItemData
 import com.redfast.mpass.api.Thumbnail
 import com.redfast.mpass.databinding.DetailCellBinding
 import com.redfast.mpass.databinding.FragmentRedflixDetailBinding
@@ -43,7 +44,7 @@ class DetailHolder(val binding: DetailCellBinding) :
     }
 }
 
-class DetailCellAdapter(var collections: List<MovieItem>, val height: Int) :
+class DetailCellAdapter(var collections: List<MovieItemData>, val height: Int) :
     RecyclerView.Adapter<DetailHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailHolder {
         val binding = DetailCellBinding.inflate(LayoutInflater.from(parent.context))
@@ -58,7 +59,7 @@ class DetailCellAdapter(var collections: List<MovieItem>, val height: Int) :
 
     override fun onBindViewHolder(holder: DetailHolder, position: Int) {
         collections[position].let {
-            holder.bindRow(it)
+            holder.bindRow(it.items)
         }
     }
 }
@@ -67,14 +68,16 @@ class DetailFragment(val item: MovieItem) : Fragment() {
     private fun makeBanner(url: String, height: Int) =
         MovieItemCollection(
             "banner", "", 0, height, listOf(
-                MovieItem(
-                    "",
-                    "",
-                    "",
-                    "",
-                    Thumbnail(url),
-                    null,
-                    true
+                MovieItemData(
+                    MovieItem(
+                        "",
+                        "",
+                        "",
+                        "",
+                        Thumbnail(url),
+                        null,
+                        true
+                    )
                 )
             )
         )
@@ -95,7 +98,9 @@ class DetailFragment(val item: MovieItem) : Fragment() {
                 movieRows.add(
                     MovieItemCollection(
                         "detail", "", 0, 640, listOf(
-                            item
+                            MovieItemData(
+                                item
+                            )
                         )
                     )
                 )

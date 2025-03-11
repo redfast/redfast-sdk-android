@@ -32,12 +32,17 @@ data class MovieItem(
 )
 
 @Keep
+data class MovieItemData(
+    @Json(name = "fieldData") val items: MovieItem
+)
+
+@Keep
 data class MovieItemCollection(
     @Json(name = "name") val name: String?,
     @Json(name = "orientation") val orientation: String?,
     @Json(name = "width") val width: Int?,
     @Json(name = "height") val height: Int?,
-    @Json(name = "items") val items: List<MovieItem>
+    @Json(name = "items") val items: List<MovieItemData>
 )
 
 
@@ -65,7 +70,7 @@ open class RedflixApi {
         }
     }
 
-    private val baseUrl = "https://api.webflow.com/"
+    private val baseUrl = "https://api.webflow.com/v2/"
     private val bearerToken = "YOUR_BEARER_TOKEN"
 
     private val serviceAPi: IRedflixApi = Retrofit.Builder()
