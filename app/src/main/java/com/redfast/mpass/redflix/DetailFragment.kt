@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.redfast.mpass.R
 import com.redfast.mpass.api.MovieItem
 import com.redfast.mpass.api.MovieItemCollection
@@ -19,13 +20,12 @@ import com.redfast.mpass.databinding.DetailCellBinding
 import com.redfast.mpass.databinding.FragmentRedflixDetailBinding
 import com.redfast.mpass.redflix.home.adapter.RowAdapter
 import com.redfast.promotion.PromotionManager
-import com.squareup.picasso.Picasso
 
 class DetailHolder(val binding: DetailCellBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bindRow(item: MovieItem) {
         item.portrait?.url?.let {
-            Picasso.get()
+            Glide.with(binding.imageView2)
                 .load(it)
                 .into(binding.imageView2)
         }

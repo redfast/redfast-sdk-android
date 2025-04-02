@@ -12,11 +12,11 @@ import android.os.Bundle
 import android.os.SystemClock
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationManagerCompat
+import com.bumptech.glide.Glide
 import com.redfast.mpass.MainActivity
 import com.redfast.mpass.R
 import com.redfast.mpass.notifications.NotificationConstants.DEEP_LINK_IN_APP
 import com.redfast.mpass.notifications.NotificationConstants.DEEP_LINK_PROMPT
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,12 +47,11 @@ class NotificationsHandler(private val context: Context) {
         if (!iconUrl.isNullOrEmpty() || !smallIconUrl.isNullOrEmpty() || !imageUrl.isNullOrEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 val smallIconBitmap =
-                    if (smallIconUrl.isNullOrEmpty()) null else Picasso.get().load(smallIconUrl)
-                        .get()
+                    if (smallIconUrl.isNullOrEmpty()) null else getBitmap(smallIconUrl)
                 val iconBitmap =
-                    if (iconUrl.isNullOrEmpty()) null else Picasso.get().load(iconUrl).get()
+                    if (iconUrl.isNullOrEmpty()) null else getBitmap(iconUrl)
                 val imageBitmap =
-                    if (imageUrl.isNullOrEmpty()) null else Picasso.get().load(imageUrl).get()
+                    if (imageUrl.isNullOrEmpty()) null else getBitmap(imageUrl)
                 withContext(Dispatchers.Main) {
                     val notificationBuilder = getNotificationBuilder(
                         title,
@@ -67,6 +66,10 @@ class NotificationsHandler(private val context: Context) {
         } else {
             showNotification(getNotificationBuilder(title, body), action)
         }
+    }
+
+    private fun getBitmap(url:String) : Bitmap {
+       return Glide.with(context).asBitmap().load(url).submit().get()
     }
 
     private fun getNotificationBuilder(
