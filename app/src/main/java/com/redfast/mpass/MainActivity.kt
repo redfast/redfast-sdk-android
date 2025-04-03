@@ -2,8 +2,13 @@ package com.redfast.mpass
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import  android.os.Bundle
+import android.util.TypedValue
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -26,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-const val APP_ID = "YOUR_APP_ID_EXAMPLE"
+const val APP_ID = "2b40fc8a-75fe-436e-afa7-e2879392566c"
 
 class MainActivity : BaseActivity() {
 
@@ -38,10 +43,27 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         testNotifications()
+        val logoParent = findViewById<LinearLayout>(R.id.logoParent)
+        logoParent.addTopMarginIfSdk35()
         PromotionManager.initPromotion(this, APP_ID, DefaultSharedPrefs.userId) {
             GlobalScope.launch(Dispatchers.Main) {
                 setUpBottomNavigation()
                 handleDeeplink(intent)
+            }
+        }
+    }
+
+    fun View.addTopMarginIfSdk35() {
+        if (Build.VERSION.SDK_INT >= 35) {
+            val layoutParams = this.layoutParams as? ViewGroup.MarginLayoutParams
+            layoutParams?.let {
+                val marginInPx = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    32f,
+                    this.resources.displayMetrics
+                ).toInt()
+                it.topMargin += marginInPx
+                this.layoutParams = it
             }
         }
     }
