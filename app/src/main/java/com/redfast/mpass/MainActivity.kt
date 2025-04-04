@@ -93,7 +93,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setUpBottomNavigation() {
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     switchFragment(ScreenName.home)
@@ -118,11 +119,11 @@ class MainActivity : BaseActivity() {
                 else -> false
             }
         }
+        bottomNavigation.setSelectedItemId(R.id.home)
     }
 
     private fun switchFragment(screenName: ScreenName) {
         val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
         val pair: Pair<Fragment, String>? = when (screenName) {
             ScreenName.home -> HomeFragment() to "Home"
             ScreenName.latest -> LatestFragment() to "Latest"
@@ -131,6 +132,7 @@ class MainActivity : BaseActivity() {
             else -> null
         }
         pair?.let {
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container, pair.first, pair.second)
             fragmentTransaction.commit()
         }
@@ -147,9 +149,12 @@ class MainActivity : BaseActivity() {
             PromotionManager.purchaseIap(it) {
                 Toast.makeText(this, "Completed", Toast.LENGTH_LONG).show()
             }
+            return
         }
         val deepLinkScreen = intent?.getStringExtra(SCREEN_NAME_KEY)?.trim()?.lowercase()
-        showScreen(deepLinkScreen)
+        if (!deepLinkScreen.isNullOrEmpty()) {
+            showScreen(deepLinkScreen)
+        }
     }
 
     private fun showScreen(deeplinkToScreen: String?) {
