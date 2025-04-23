@@ -31,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-const val APP_ID = "2b40fc8a-75fe-436e-afa7-e2879392566c"
+const val APP_ID = "YOUR_APP_ID"
 
 class MainActivity : BaseActivity() {
 
