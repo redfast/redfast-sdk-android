@@ -2,11 +2,11 @@ package com.redfast.mpass.redflix.genres.adapter.holders
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.redfast.mpass.MovieFragment
 import com.redfast.mpass.R
 import com.redfast.mpass.api.Video
 import com.redfast.mpass.databinding.MovieCellBinding
-import com.squareup.picasso.Picasso
 
 class MovieCellHolder(val binding: MovieCellBinding) : RecyclerView.ViewHolder(binding.root) {
     init {
@@ -21,7 +21,7 @@ class MovieCellHolder(val binding: MovieCellBinding) : RecyclerView.ViewHolder(b
     }
 
     fun bindCell(video: Video, row: Int, cell: Int) {
-        Picasso.get()
+        Glide.with(binding.imageView2)
             .load("https://image.tmdb.org/t/p/w200" + video.poster_path)
             .into(binding.imageView2)
     }

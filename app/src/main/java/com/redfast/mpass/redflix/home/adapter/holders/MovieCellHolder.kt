@@ -3,11 +3,11 @@ package com.redfast.mpass.redflix.home.adapter.holders
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.redfast.mpass.R
 import com.redfast.mpass.api.MovieItem
 import com.redfast.mpass.databinding.MovieCellBinding
 import com.redfast.mpass.redflix.DetailFragment
-import com.squareup.picasso.Picasso
 
 class MovieCellHolder(
     val binding: MovieCellBinding,
@@ -24,13 +24,13 @@ class MovieCellHolder(
 
         if (orientation == "portrait") {
             item.portrait?.url?.let {
-                Picasso.get()
+                Glide.with(binding.imageView2)
                     .load(it)
                     .into(binding.imageView2)
             }
         } else {
             item.landscape?.url?.let {
-                Picasso.get()
+                Glide.with(binding.imageView2)
                     .load(it)
                     .into(binding.imageView2)
             }

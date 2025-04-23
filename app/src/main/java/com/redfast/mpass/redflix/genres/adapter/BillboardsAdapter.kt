@@ -19,7 +19,7 @@ class BillboardsAdapter(private val context: Context, private val items: Array<P
         val view = ImageView(parent.context)
         view.layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
+            LinearLayout.LayoutParams.WRAP_CONTENT
         )
         view.isFocusable = true
         return BillboardHolder(view)

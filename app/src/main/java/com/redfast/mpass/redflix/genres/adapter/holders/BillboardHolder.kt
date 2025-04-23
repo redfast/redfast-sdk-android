@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.redfast.mpass.MovieFragment
 import com.redfast.mpass.R
 import com.redfast.promotion.PromotionManager
-import com.squareup.picasso.Picasso
 
 class BillboardHolder(v: View) : RecyclerView.ViewHolder(v) {
     init {
@@ -36,8 +36,9 @@ class BillboardHolder(v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun bindBillboard(url: String) {
-        Picasso.get()
+        val view = itemView as ImageView
+        Glide.with(view.context)
             .load(url)
-            .into(itemView as ImageView)
+            .into(view)
     }
 }

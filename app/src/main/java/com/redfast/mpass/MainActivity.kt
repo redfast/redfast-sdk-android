@@ -2,8 +2,13 @@ package com.redfast.mpass
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import  android.os.Bundle
+import android.util.TypedValue
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -26,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-const val APP_ID = "YOUR_APP_ID_EXAMPLE"
+const val APP_ID = "YOUR_APP_ID"
 
 class MainActivity : BaseActivity() {
 
@@ -38,10 +43,27 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         testNotifications()
+        val logoParent = findViewById<LinearLayout>(R.id.logoParent)
+        logoParent.addTopMarginIfSdk35()
         PromotionManager.initPromotion(this, APP_ID, DefaultSharedPrefs.userId) {
             GlobalScope.launch(Dispatchers.Main) {
                 setUpBottomNavigation()
                 handleDeeplink(intent)
+            }
+        }
+    }
+
+    fun View.addTopMarginIfSdk35() {
+        if (Build.VERSION.SDK_INT >= 35) {
+            val layoutParams = this.layoutParams as? ViewGroup.MarginLayoutParams
+            layoutParams?.let {
+                val marginInPx = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    32f,
+                    this.resources.displayMetrics
+                ).toInt()
+                it.topMargin += marginInPx
+                this.layoutParams = it
             }
         }
     }
@@ -71,7 +93,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setUpBottomNavigation() {
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     switchFragment(ScreenName.home)
@@ -96,11 +119,11 @@ class MainActivity : BaseActivity() {
                 else -> false
             }
         }
+        bottomNavigation.setSelectedItemId(R.id.home)
     }
 
     private fun switchFragment(screenName: ScreenName) {
         val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
         val pair: Pair<Fragment, String>? = when (screenName) {
             ScreenName.home -> HomeFragment() to "Home"
             ScreenName.latest -> LatestFragment() to "Latest"
@@ -109,6 +132,7 @@ class MainActivity : BaseActivity() {
             else -> null
         }
         pair?.let {
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.container, pair.first, pair.second)
             fragmentTransaction.commit()
         }
@@ -125,9 +149,12 @@ class MainActivity : BaseActivity() {
             PromotionManager.purchaseIap(it) {
                 Toast.makeText(this, "Completed", Toast.LENGTH_LONG).show()
             }
+            return
         }
         val deepLinkScreen = intent?.getStringExtra(SCREEN_NAME_KEY)?.trim()?.lowercase()
-        showScreen(deepLinkScreen)
+        if (!deepLinkScreen.isNullOrEmpty()) {
+            showScreen(deepLinkScreen)
+        }
     }
 
     private fun showScreen(deeplinkToScreen: String?) {

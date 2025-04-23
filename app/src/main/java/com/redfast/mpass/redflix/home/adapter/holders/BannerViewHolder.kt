@@ -3,9 +3,9 @@ package com.redfast.mpass.redflix.home.adapter.holders
 import android.content.res.Resources
 import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.redfast.mpass.api.MovieItem
 import com.redfast.mpass.databinding.MovieCellBinding
-import com.squareup.picasso.Picasso
 
 class BannerViewHolder(val binding: MovieCellBinding, val height: Int) :
     RecyclerView.ViewHolder(binding.root) {
@@ -18,13 +18,13 @@ class BannerViewHolder(val binding: MovieCellBinding, val height: Int) :
 
         if (item.local!!) {
             item.landscape?.url?.let {
-                Picasso.get()
+                Glide.with(binding.imageView2)
                     .load(item.landscape.url.toInt())
                     .into(binding.imageView2)
             }
         } else {
             item.landscape?.url?.let {
-                Picasso.get()
+                Glide.with(binding.imageView2)
                     .load(it)
                     .into(binding.imageView2)
             }
