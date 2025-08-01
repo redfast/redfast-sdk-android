@@ -50,6 +50,9 @@ android {
         create("amazon") {
             dimension = "device"
         }
+        create("noiap") {
+            dimension = "device"
+        }
     }
 }
 
@@ -88,6 +91,8 @@ dependencies {
     "amazonCompileOnly"(files("src/amazon/libs/amazon-device-messaging-1.2.0.jar"))
     "amazonImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:v2.2.1.2")
     "googleImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:v2.2.1.2")
+    "noiapImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-noiap:v2.2.1.2")
+    "noiapImplementation"("com.google.firebase:firebase-messaging")
     "googleImplementation"("com.android.billingclient:billing:6.0.1")
     "googleImplementation"("com.android.billingclient:billing-ktx:6.0.1")
 
