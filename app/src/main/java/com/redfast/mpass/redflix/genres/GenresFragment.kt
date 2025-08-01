@@ -75,7 +75,7 @@ class GenresFragment : Fragment() {
         context?.let {
             PromotionManager.buttonClick(view, "accessibility-123") {
                 when (it.code) {
-                    PromotionResultCode.timerExpired,
+                    PromotionResultCode.timeout,
                     PromotionResultCode.declined,
                     PromotionResultCode.abort ->
                         Log.v("mpass", "offer not selected")
