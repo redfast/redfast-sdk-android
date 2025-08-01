@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.redfast.mpass">
 
     <permission
@@ -28,7 +29,8 @@
         <service
             android:name="com.redfast.mpass.ADMMessageHandlerJobBase"
             android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            tools:ignore="Instantiatable" />
         <service
             android:name="com.redfast.mpass.ADMMessageHandler"
             android:exported="false" />
