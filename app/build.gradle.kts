@@ -84,16 +84,10 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("com.google.code.gson:gson:2.8.9")
-    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    implementation("com.google.firebase:firebase-analytics")
-    "googleImplementation"("com.google.firebase:firebase-messaging")
-
-    "amazonCompileOnly"(files("src/amazon/libs/amazon-device-messaging-1.2.0.jar"))
     "amazonImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:v2.2.1.5")
     "googleImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:v2.2.1.5")
     "noiapImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-noiap:v2.2.1.5")
-    "noiapImplementation"("com.google.firebase:firebase-messaging")
     "googleImplementation"("com.android.billingclient:billing:6.0.1")
     "googleImplementation"("com.android.billingclient:billing-ktx:6.0.1")
-
+    "amazonImplementation"(files("src/amazon/A3LMessaging-1.1.0.aar"))
 }

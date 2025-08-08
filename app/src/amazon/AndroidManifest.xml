@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.redfast.mpass">
 
-    <permission
-        android:name="com.redfast.mpass.permission.RECEIVE_ADM_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.redfast.mpass.permission.RECEIVE_ADM_MESSAGE" />
-    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <application>
         <receiver
             android:name="com.amazon.device.iap.ResponseReceiver"
@@ -19,29 +11,6 @@
             android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY">
             <intent-filter>
                 <action android:name="com.amazon.inapp.purchasing.NOTIFY" />
-            </intent-filter>
-        </receiver>
-
-        <amazon:enable-feature
-            android:name="com.amazon.device.messaging"
-            android:required="true" />
-
-        <service
-            android:name="com.redfast.mpass.ADMMessageHandlerJobBase"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            tools:ignore="Instantiatable" />
-        <service
-            android:name="com.redfast.mpass.ADMMessageHandler"
-            android:exported="false" />
-
-        <receiver android:name="com.redfast.mpass.ADMMessageReceiver"
-            android:exported="true"
-            android:permission="com.amazon.device.messaging.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
-                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
-                <category android:name="com.redfast.mpass" />
             </intent-filter>
         </receiver>
     </application>

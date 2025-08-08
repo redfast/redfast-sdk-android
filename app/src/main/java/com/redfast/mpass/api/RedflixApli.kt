@@ -22,7 +22,7 @@ data class Thumbnail(
 
 @Keep
 data class MovieItem(
-    @Json(name = "name") val name: String,
+    @Json(name = "name") val name: String?,
     @Json(name = "director") val director: String?,
     @Json(name = "duration") val duration: String?,
     @Json(name = "short-description") val shortDescription: String?,
