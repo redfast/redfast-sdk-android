@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.redfast.mpass"
-        minSdk = 21
+        minSdk = 25
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
