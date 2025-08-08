@@ -76,11 +76,11 @@ class GenresFragment : Fragment() {
             PromotionManager.buttonClick(view, "accessibility-123") {
                 when (it.code) {
                     PromotionResultCode.timeout,
-                    PromotionResultCode.declined,
-                    PromotionResultCode.abort ->
+                    PromotionResultCode.button3,
+                    PromotionResultCode.dismiss ->
                         Log.v("mpass", "offer not selected")
 
-                    PromotionResultCode.accepted ->
+                    PromotionResultCode.button1 ->
                         Log.v("mpass", "offer accepted")
 
                     else ->
