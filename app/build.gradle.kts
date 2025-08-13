@@ -84,9 +84,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("com.google.code.gson:gson:2.8.9")
-    "amazonImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:v2.2.1.6")
-    "googleImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:v2.2.1.6")
-    "noiapImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-noiap:v2.2.1.6")
+    "amazonImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:v2.2.1.6a")
+    "googleImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:v2.2.1.6a")
+    "noiapImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-noiap:v2.2.1.6a")
     "googleImplementation"("com.android.billingclient:billing:6.0.1")
     "googleImplementation"("com.android.billingclient:billing-ktx:6.0.1")
     "amazonImplementation"(files("src/amazon/A3LMessaging-1.1.0.aar"))
