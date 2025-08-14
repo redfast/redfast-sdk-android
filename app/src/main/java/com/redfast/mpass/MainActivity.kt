@@ -1,32 +1,26 @@
 package com.redfast.mpass
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
-import  android.os.Bundle
+import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.redfast.mpass.base.BaseActivity
 import com.redfast.mpass.base.DefaultSharedPrefs
-import com.redfast.mpass.base.token
 import com.redfast.mpass.base.userId
-import com.redfast.mpass.notifications.NotificationAction
-import com.redfast.mpass.notifications.NotificationsHandler
-import com.redfast.mpass.notifications.NotificationsHandler.Companion.PROMPT_ID_KEY
-import com.redfast.mpass.notifications.NotificationsHandler.Companion.SCREEN_NAME_KEY
-import com.redfast.mpass.notifications.NotificationsHandler.Companion.SKU_ID_KEY
 import com.redfast.mpass.redflix.genres.GenresFragment
 import com.redfast.mpass.redflix.home.HomeFragment
 import com.redfast.mpass.redflix.latest.LatestFragment
 import com.redfast.mpass.redflix.profile.ProfileFragment
+import com.redfast.promotion.PROMPT_ID_KEY
 import com.redfast.promotion.PromotionManager
+import com.redfast.promotion.SCREEN_NAME_KEY
+import com.redfast.promotion.SKU_ID_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,7 +36,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        testNotifications()
         val logoParent = findViewById<LinearLayout>(R.id.logoParent)
         logoParent.addTopMarginIfSdk35()
         PromotionManager.initPromotion(this, APP_ID, DefaultSharedPrefs.userId) {
@@ -65,30 +58,6 @@ class MainActivity : BaseActivity() {
                 it.topMargin += marginInPx
                 this.layoutParams = it
             }
-        }
-    }
-
-    private fun testNotifications() {
-        findViewById<ImageView>(R.id.imageView)?.setOnLongClickListener {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            val alert = builder.setTitle("Token")
-                .setMessage(DefaultSharedPrefs.token)
-                .setPositiveButton("OK") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .setNegativeButton("Send Push Notification") { dialog, _ ->
-                    NotificationsHandler(this@MainActivity).onMessageReceived(
-                        "This is test notification",
-                        "This is test body",
-                        "https://cdn.icon-icons.com/icons2/1465/PNG/512/668basketball_100473.png",
-                        "https://cdn.icon-icons.com/icons2/1465/PNG/32/668basketball_100473.png",
-                        "https://cdn.icon-icons.com/icons2/1465/PNG/512/668basketball_100473.png",
-                        NotificationAction.OpenDeepLink("redflix://${ScreenName.profile.name}")
-                    )
-                    dialog.dismiss()
-                }.show()
-            alert.findViewById<TextView>(android.R.id.message).setTextIsSelectable(true)
-            true
         }
     }
 
