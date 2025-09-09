@@ -2,6 +2,7 @@ package com.redfast.mpass
 
 import android.app.Application
 import android.content.Context
+import com.redfast.promotion.PromotionManager
 
 val sharedApplicationContext: Context
     get() = _sharedApplicationContext
@@ -17,5 +18,6 @@ class App : Application() {
         super.onCreate()
 
         _sharedApplicationContext = applicationContext
+        registerActivityLifecycleCallbacks(PromotionManager.activityLifecycleListener)
     }
 }
