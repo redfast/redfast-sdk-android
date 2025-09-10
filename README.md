@@ -30,7 +30,7 @@ registerActivityLifecycleCallbacks(PromotionManager.activityLifecycleListener)
 
 Make sure the `api_key.txt` is created for your demo app only. And it is saved under the `app/src/amazon/assets/` folder
 
-Downlaod a copy of `A3LMessaging-1.1.0.aar` and add a build dependence in the build.gradle.kts. here is an example
+Downlaod a copy of `A3LMessaging-1.1.0.aar` from [here](https://developer.amazon.com/docs/a3l-messaging/get-started.html#add-a3l-messaging-as-a-dependency) and add a build dependence in the build.gradle.kts. here is an example
 ```gradle
 implementation(files("src/amazon/A3LMessaging-1.1.0.aar"))
 ```
