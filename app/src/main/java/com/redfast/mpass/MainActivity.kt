@@ -17,6 +17,7 @@ import com.redfast.mpass.redflix.genres.GenresFragment
 import com.redfast.mpass.redflix.home.HomeFragment
 import com.redfast.mpass.redflix.latest.LatestFragment
 import com.redfast.mpass.redflix.profile.ProfileFragment
+import com.redfast.promotion.IapProductType
 import com.redfast.promotion.PROMPT_ID_KEY
 import com.redfast.promotion.PromotionManager
 import com.redfast.promotion.SCREEN_NAME_KEY
@@ -115,10 +116,23 @@ class MainActivity : BaseActivity() {
             return
         }
         intent?.getStringExtra(SKU_ID_KEY)?.let {
-            PromotionManager.purchaseIap(it) {
-                Toast.makeText(this, "Completed", Toast.LENGTH_LONG).show()
+            PromotionManager.iapGetProductDetails(
+                it,
+                IapProductType.consumable
+            ) { list ->
+                if (list.isNotEmpty()) {
+                    PromotionManager.iapPurchaseProducts(
+                        listOf(list[0].rawObj),
+                        null
+                    ) { result, error ->
+                        error?.let {
+                            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+                        } ?: run {
+                            Toast.makeText(this, "Completed", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
             }
-            return
         }
         val deepLinkScreen = intent?.getStringExtra(SCREEN_NAME_KEY)?.trim()?.lowercase()
         if (!deepLinkScreen.isNullOrEmpty()) {
