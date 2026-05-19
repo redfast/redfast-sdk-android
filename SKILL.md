@@ -1,6 +1,6 @@
 ---
 name: engage
-description: Guide for integrating the Recurly Engage Android SDK (V3). Use when the user asks about com.redfast packages, PromptManager, PromptOverlay, PromptInline, PromptOverlayTriggerType, PromptEvent, PromptResult, or any Recurly Engage Android SDK setup (Jitpack, flavors, FCM/ADM push, Google/Amazon IAP).
+description: Guide for integrating the Recurly Engage Android SDK (V3). Use when the user asks about com.redfast packages, PromptManager, PromptOverlay, PromptInline, PromptOverlayTriggerType, PromptEvent, PromptResult, or any Recurly Engage Android SDK setup (Maven Central, flavors, FCM/ADM push, Google/Amazon IAP).
 ---
 
 # Recurly Engage Android SDK v3 — Integration Skill
@@ -24,19 +24,19 @@ The SDK has two modules consumed as a single artifact per flavor:
 - **core** (`com.redfast.core`) — Networking, state, business logic. No Android UI.
 - **ui** (`com.redfast.ui`) — Jetpack Compose components, push, IAP. Depends on core.
 
-Available artifacts via Jitpack:
+Available artifacts on Maven Central (`com.recurly`):
 | Artifact | Store | Push | IAP |
 |---|---|---|---|
-| `redfast-sdk-google` | Google Play | FCM | Google Play Billing |
-| `redfast-sdk-amazon` | Amazon | ADM (A3L) | Amazon IAP |
-| `redfast-sdk-noiap` | Generic | FCM | None |
-| `redfast-sdk-core` | Generic | None | None |
+| `engage-sdk-android-google` | Google Play | FCM | Google Play Billing |
+| `engage-sdk-android-amazon` | Amazon | ADM (A3L) | Amazon IAP |
+| `engage-sdk-android-noiap` | Generic | FCM | None |
+| `engage-sdk-android-core` | Generic | None | None |
 
 ---
 
 ## 1. Gradle Setup
 
-### Add Jitpack repository
+### Verify Maven Central is in your repositories
 
 In `settings.gradle.kts`:
 
@@ -45,7 +45,6 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
-        maven { url = uri("https://jitpack.io") }
     }
 }
 ```
@@ -56,14 +55,17 @@ In the app `build.gradle.kts`, pick the artifact matching the target platform:
 
 ```kotlin
 dependencies {
-    // Google Play
-    implementation("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:VERSION")
+    // Google Play with IAP
+    implementation("com.recurly:engage-sdk-android-google:VERSION")
 
-    // Amazon
-    implementation("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:VERSION")
+    // Amazon with IAP
+    implementation("com.recurly:engage-sdk-android-amazon:VERSION")
 
-    // No IAP
-    implementation("com.github.redfast.redfast-sdk-android-build:redfast-sdk-noiap:VERSION")
+    // Google Play without IAP
+    implementation("com.recurly:engage-sdk-android-noiap:VERSION")
+
+    // No IAP or push
+    implementation("com.recurly:engage-sdk-android-core:VERSION")
 }
 ```
 
@@ -71,8 +73,8 @@ If the host app has product flavors for store variants, use flavor-specific conf
 
 ```kotlin
 dependencies {
-    "googleImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-google:VERSION")
-    "amazonImplementation"("com.github.redfast.redfast-sdk-android-build:redfast-sdk-amazon:VERSION")
+    "googleImplementation"("com.recurly:engage-sdk-android-google:VERSION")
+    "amazonImplementation"("com.recurly:engage-sdk-android-amazon:VERSION")
 }
 ```
 
