@@ -1,6 +1,6 @@
-# Redfast Android SDK (mobile/tablet/TV)
+# Recurly Engage Android SDK (mobile/tablet/TV)
 
-Please refer to the Android help [page](https://help.redfast.com/docs/android-sdk) for SDK installation instructions.
+Please refer to the Android help [page](https://docs.recurly.com/recurly-engage/docs/recurly-engage-sdk) for SDK installation instructions.
 
 See [Releases](https://github.com/redfast/redfast-sdk-android/releases) for the latest version
 
