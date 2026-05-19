@@ -1,27 +1,6 @@
 # Recurly Engage Android SDK (mobile/tablet/TV)
 
-The SDK is available on **Maven Central**. Add the dependency that matches your target platform:
-
-```kotlin
-// build.gradle.kts
-dependencies {
-    // Google Play with IAP
-    implementation("com.recurly:engage-sdk-android-google:2.3.5")
-
-    // Amazon Fire with IAP
-    implementation("com.recurly:engage-sdk-android-amazon:2.3.5")
-
-    // Google Play without IAP
-    implementation("com.recurly:engage-sdk-android-noiap:2.3.5")
-
-    // No IAP or push
-    implementation("com.recurly:engage-sdk-android-core:2.3.5")
-}
-```
-
-No additional repository configuration is needed — `mavenCentral()` is sufficient.
-
-For full integration instructions, refer to the [API documentation](https://help.redfast.com/docs/android-sdk).
+Please refer to the Android help [page](https://docs.recurly.com/recurly-engage/docs/recurly-engage-sdk) for SDK installation instructions.
 
 See [Releases](https://github.com/redfast/redfast-sdk-android/releases) for the latest version
 
